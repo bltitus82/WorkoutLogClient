@@ -17,10 +17,15 @@ function App() {
     console.log(sessionToken);
   }
 
+  const clearToken = () => {
+    localStorage.clear();
+    setSessionToken('');
+  }
+
   return (
     <div>
-      <Sitebar/>
-      <Auth/>
+      <Sitebar />
+      <Auth updateToken={updateToken} />
     </div>
   );
 }
