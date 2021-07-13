@@ -5,13 +5,13 @@ const Login = (props) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const HandleSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
-        fetch('https://localhost:3000/user/login', {
+        fetch('http://localhost:3000/user/login', {
             method: "POST", 
-            body: JSON.stringify({user:{username: username, password: password}}),
+            body: JSON.stringify({user:{email: username, password: password}}),
             headers: new Headers({
-                'Content-Type': 'application/json/'
+                'Content-Type': 'application/json'
             })
         }).then(
             (response) => response.json()
@@ -23,7 +23,7 @@ const Login = (props) => {
     return(
         <div>
             <h1>Login</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label htmlFor='username'>Username</Label>
                     <Input onChange={(e) => setUsername(e.target.value)} name='username' value={username} />

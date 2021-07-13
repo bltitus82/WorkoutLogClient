@@ -8,14 +8,14 @@ const WorkoutCreate = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('http://localhost:3000/log/', {
+        fetch('http://localhost:3000/workoutlog/create/', {
             method: 'POST',
-            body: JSON.stringify({log: {description: description, definition: definition, result: result}}),
+            body: JSON.stringify({workoutLog: {description: description, definition: definition, result: result}}),
             headers: new Headers({
                 'Content-Type': "application/json", 
                 'Authorization': props.token
             })
-        }) .then((res) => res.json())
+        }).then((res) => res.json())
         .then((logData) => {
             console.log(logData);
             setDescription('');
@@ -28,7 +28,7 @@ const WorkoutCreate = (props) => {
     return(
     <div>
         <h3>Log a Workout</h3>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <FormGroup>
                     <Label htmlFor='description'/>
                     <Input name='description' value={description} onChange={(e) => setDescription(e.target.value)}/>
@@ -46,7 +46,6 @@ const WorkoutCreate = (props) => {
                     <Input name="result" value={result} onChange={(e) => setResult(e.target.value)}/>
                 </FormGroup>
                 <Button type="submit">Click to Submit</Button>
-                <Form onSubmit={handleSubmit}/>
             </Form>
     </div>
     )
