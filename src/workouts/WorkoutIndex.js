@@ -50,6 +50,7 @@ const WorkoutIndex = (props) => {
                 <Col md="9">
                     <WorkoutTable workouts={workouts} editUpdateWorkout={editUpdateWorkout} updateOn={updateOn} fetchWorkouts={fetchWorkouts} token={props.token}/>
                 </Col>
+                {updateActive ? <WorkoutEdit workoutToUpdate={workoutToUpdate} updateOff={updateOff} token={props.token} fetchWorkouts={fetchWorkouts}/> : <></>}
             </Row>
         </Container>
     )
